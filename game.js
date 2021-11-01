@@ -1,21 +1,18 @@
 function Bear() {
-    this.dBear = 100;
-    this.htmlElement = document.getElementById("bear");
-    this.id = this.htmlElement.id;
-    this.x = this.htmlElement.offsetLeft;
+    this.dBear = 100; 
+    this.htmlElement = document.getElementById("bear"); 
+    this.id = this.htmlElement.id; 
+    this.x = this.htmlElement.offsetLeft; 
     this.y = this.htmlElement.offsetTop; 
-    
-    this.move = function(xDir, yDir) {
-        this.x += this.dBear * xDir;
+    this.move = function(xDir, yDir) { 
+        this.x += this.dBear * xDir; 
         this.y += this.dBear * yDir; 
-        this.display(); 
-    }; 
-    this.display = function() { 
-        this.fitBounds();
-        this.htmlElement.style.left = this.x + "px"; 
-        this.htmlElement.style.top = this.y + "px"; 
-        this.htmlElement.style.display = "absolute"; 
-    }; 
+        this.display(); }; 
+        this.display = function() { 
+            this.htmlElement.style.left = this.x + "px"; 
+            this.htmlElement.style.top = this.y + "px"; 
+            this.htmlElement.style.display = "absolute"; 
+        }; 
     this.fitBounds = function() { 
         let parent = this.htmlElement.parentElement; 
         let iw = this.htmlElement.offsetWidth; 
@@ -38,6 +35,7 @@ function start(){
     bees = new Array(); 
     //create bees 
     makeBees();
+    updateBees();
 }
 
 // Handle keyboad events 
