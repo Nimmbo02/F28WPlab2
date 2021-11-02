@@ -203,7 +203,7 @@ function updateBees() {
     let period = document.getElementById("periodTimer").value;
 
     let score = hits.innerHTML;
-    if (Number(score) < 1000) {
+    if (Number(score) <= 1000) {
         updateTimer = setTimeout('updateBees()', period); //Update the bees movement after the specified interval
     } else {
         score = "Game Over"
