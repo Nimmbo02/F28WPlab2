@@ -48,16 +48,6 @@ function start() {
     makeBees(); //Create bees
     updateBees();
 }
-
-function restart() {
-    score = 0;
-    hits.innerHTML = score;
-    duration.innerHTML = 0;
-    updateTimer = clearTimeout();
-    removeBees();
-    start();
-}
-
 //Handling keyboard events to move the bear
 // to move the bear
 function moveBear(e) {
@@ -178,9 +168,9 @@ function makeBees() {
     let i = 1;
     while (i <= nbBees) {
         var num = i;
-        var bee = new Bee(num); //Create a bee
-        bee.display(); //Display the bee on screen
-        bees.push(bee); //Add the bee to the bees array
+        var bee = new Bee(num); //create object and its IMG element
+        bee.display(); //display the bee
+        bees.push(bee); //add the bee object to the bees array
         i++;
     }
 
@@ -194,12 +184,6 @@ function addBee() {
     bee.display(); //Display the bee on screen
     bees.push(bee); //Add the bee to the bees array
 }
-
-function removeBees() {
-    beesArray = document.getElementsByClassName("bee");
-    beesArray.forEach(e => e.remove());
-}
-
 function moveBees() {
     let speed = document.getElementById("speedBees").value; //Get the speed from the input field
 
@@ -230,10 +214,10 @@ function updateBees() {
 
 function isHit(defender, offender) {
 
-    if (overlap(defender, offender)) { //Check if the 2 images overlapped
+    if (overlap(defender, offender)) { //Check if the two images overlapped
         let score = hits.innerHTML;
         score = Number(score) + 1; //Increment the score
-        hits.innerHTML = score;
+        hits.innerHTML = score;//display new score
 
         //Calculate longest duration
         let newStingTime = new Date();
@@ -254,25 +238,25 @@ function isHit(defender, offender) {
 }
 
 function overlap(element1, element2) {
-
-    //The rectangle around the first element
+    //consider the two rectangles wrapping the two elements 
+    //rectangle of the first element
     left1 = element1.htmlElement.offsetLeft;
     top1 = element1.htmlElement.offsetTop;
     right1 = element1.htmlElement.offsetLeft + element1.htmlElement.offsetWidth;
     bottom1 = element1.htmlElement.offsetTop + element1.htmlElement.offsetHeight;
 
-    //The rectangle around the second element
+    //The rectangle of the second element
     left2 = element2.htmlElement.offsetLeft;
     top2 = element2.htmlElement.offsetTop;
     right2 = element2.htmlElement.offsetLeft + element2.htmlElement.offsetWidth;
     bottom2 = element2.htmlElement.offsetTop + element2.htmlElement.offsetHeight;
 
-    //Calculate the intersection of the 2 rectangles
+    //Calculate the intersection of the two rectangles
     x_intersect = Math.max(0, Math.min(right1, right2) - Math.max(left1, left2));
     y_intersect = Math.max(0, Math.min(bottom1, bottom2) - Math.max(top1, top2));
     intersectArea = x_intersect * y_intersect;
 
-    //If intersection is null
+    //If intersection is nil no hit
     if (intersectArea == 0 || isNaN(intersectArea)) {
         return false;
     }
